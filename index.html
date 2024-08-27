@@ -3,57 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Emoji Driven Text2Logo AI Generator</title>
+  <title>Text2Logo AI Generator</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     body {
       scroll-behavior: smooth;
+      background-color: black;
+      color: white;
+      font-family: 'Impact', sans-serif;
     }
     .parallax {
       background-attachment: fixed;
     }
+    .floating-arrow {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(-50%) translateY(0);
+      }
+      50% {
+        transform: translateY(-50%) translateY(10px);
+      }
+    }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body>
 
   <!-- About Section -->
-  <section id="about" class="parallax bg-cover bg-center h-screen flex items-center justify-center" style="background-image: url('https://source.unsplash.com/random/1600x900');">
-    <div class="text-center p-8 bg-white bg-opacity-75 rounded-lg shadow-lg">
-      <h1 class="text-5xl font-bold mb-4">About Our Emoji Driven Text2Logo AI Generator</h1>
-      <p class="text-lg">Welcome to our innovative AI-powered tool that transforms your text into stunning logos using emojis. Perfect for creating unique and eye-catching designs effortlessly.</p>
+  <section id="about" class="parallax bg-cover bg-center h-screen flex items-center justify-center">
+    <div class="text-center p-8 bg-black bg-opacity-75 rounded-lg shadow-lg">
+      <h1 class="text-5xl font-bold mb-4">Text2Logo AI Generator</h1>
+      <p class="text-lg">Transform your text into stunning logos effortlessly with our AI-powered tool. Perfect for creating unique and eye-catching designs.</p>
     </div>
   </section>
 
-  <!-- How to Use Section -->
-  <section id="how-to-use" class="parallax bg-cover bg-center h-screen flex items-center justify-center" style="background-image: url('https://source.unsplash.com/random/1600x901');">
-    <div class="text-center p-8 bg-white bg-opacity-75 rounded-lg shadow-lg">
-      <h2 class="text-4xl font-bold mb-4">How to Use</h2>
-      <ol class="list-decimal list-inside text-lg">
-        <li>Enter your text in the input field.</li>
-        <li>Select your preferred emojis.</li>
-        <li>Click the "Generate Logo" button.</li>
-        <li>Download or share your new logo!</li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- App Section -->
-  <section id="app" class="parallax bg-cover bg-center h-screen flex items-center justify-center" style="background-image: url('https://source.unsplash.com/random/1600x902');">
-    <div class="text-center p-8 bg-white bg-opacity-75 rounded-lg shadow-lg w-full max-w-lg">
-      <h3 class="text-3xl font-bold mb-4">Generate Your Logo</h3>
-      <form class="space-y-4">
-        <div>
-          <label for="text-input" class="block text-lg font-medium">Enter Text:</label>
-          <input type="text" id="text-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Your text here...">
-        </div>
-        <div>
-          <label for="emoji-input" class="block text-lg font-medium">Select Emojis:</label>
-          <input type="text" id="emoji-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="😊🔥🌟">
-        </div>
-        <button type="button" class="w-full py-2 px-4 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-700">Generate Logo</button>
-      </form>
-    </div>
-  </section>
+  <!-- Floating Arrow -->
+  <div class="floating-arrow">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </div>
 
 </body>
 </html>
