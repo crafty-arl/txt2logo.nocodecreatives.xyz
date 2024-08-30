@@ -16,7 +16,6 @@ permissions:
   id-token: write
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -31,18 +30,36 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
-      # Set the environment variable for OpenAI API
-      - name: Set up environment variables
-        run: echo "OPEN_AI_API=${{ secrets.OPEN_AI_API }}" >> $GITHUB_ENV
-      
+
+      - name: Set environment variables
+        env:
+          OPEN_AI_API: ${{ secrets.OPEN_AI_API }}
+        run: echo "Environment variable OPEN_AI_API is set."
+
+      - name: Make API request and output results
+        env:
+          OPEN_AI_API: ${{ secrets.OPEN_AI_API }}
+        run: |
+          response=$(curl -s -X POST "https://api.openai.com/v1/images/generations" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $OPEN_AI_API" \
+            -d '{
+              "model": "dall-e-3",
+              "prompt": "a white siamese cat",
+              "n": 1,
+              "size": "1024x1024"
+            }')
+          echo "Response from API:"
+          echo $response | jq '.'
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
           path: '.'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
