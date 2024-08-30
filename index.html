@@ -3,271 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Text2Logo AI Generator</title>
+  <title>Text2Logo AI Generator - Coming Soon</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     body {
       scroll-behavior: smooth;
-      background-color: #1a1a1a; /* Dark gray for better contrast */
-      color: #f0f0f0; /* Light gray for better readability */
+      background-color: #1a1a1a;
+      color: #f0f0f0;
       font-family: 'Courier New', monospace;
-    }
-    .parallax {
-      background-attachment: fixed;
-    }
-    .floating-arrow {
-      position: fixed;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      animation: bounce 2s infinite;
-      cursor: pointer;
-    }
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(-50%) translateY(0);
-      }
-      50% {
-        transform: translateY(-50%) translateY(10px);
-      }
     }
   </style>
 </head>
-<body>
-
-  <!-- Navigation Buttons -->
-  <div class="fixed top-4 left-4 space-y-2">
-    <button onclick="scrollToSection('about')" class="p-2 rounded bg-blue-500 hover:bg-blue-700 text-white">About</button>
-    <button onclick="scrollToSection('form')" class="p-2 rounded bg-blue-500 hover:bg-blue-700 text-white">Generate Logo</button>
-    <button onclick="scrollToSection('logoDisplay')" class="p-2 rounded bg-blue-500 hover:bg-blue-700 text-white">Your Logo</button>
-  </div>
-
-  <!-- About Section -->
-  <section id="about" class="parallax bg-cover bg-center h-screen flex items-center justify-center">
-    <div class="text-center p-8 bg-gray-800 bg-opacity-75 rounded-lg shadow-lg">
-      <h1 class="text-5xl font-bold mb-4">Text2Logo AI Generator</h1>
-      <p class="text-lg">Transform your text into stunning logos effortlessly with our AI-powered tool. Perfect for creating unique and eye-catching designs.</p>
-    </div>
-  </section>
-
-  <!-- Form Section -->
-  <section id="form" class="h-screen flex flex-col">
-    <div class="container mx-auto px-4 py-4 flex flex-col">
-      <h1 class="text-2xl font-bold mb-4 text-center text-gray-200">Text to Logo Generator</h1>
-
-      <div class="flex items-center justify-end mb-2">
-        <span class="mr-2 text-xs font-medium text-gray-400">Standard</span>
-        <label class="relative inline-flex items-center cursor-pointer">
-          <input type="checkbox" id="mode-toggle" class="sr-only peer">
-          <div class="w-9 h-5 bg-gray-600 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
-        </label>
-        <span class="ml-2 text-xs font-medium text-gray-400">Advanced</span>
-      </div>
-
-      <div class="flex-grow flex">
-        <div class="w-1/2 pr-2">
-          <div id="standard-mode" class="bg-gray-700 p-4 rounded-lg shadow-md h-full">
-            <h2 class="text-lg font-semibold mb-2 text-gray-200">Standard Mode</h2>
-            <form id="standard-form" class="space-y-2">
-              <div>
-                <label for="industry" class="block text-xs font-medium text-gray-200">Industry</label>
-                <select name="industry" id="industry" required class="mt-1 block w-full pl-2 pr-8 py-1 text-sm border-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 rounded-md">
-                  <option value="">Select Industry</option>
-                  <option value="Technology">Technology</option>
-                  <option value="Healthcare">Healthcare</option>
-                  <option value="Finance">Finance</option>
-                  <option value="Education">Education</option>
-                  <option value="Entertainment">Entertainment</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label for="style" class="block text-xs font-medium text-gray-200">Style</label>
-                <select name="style" id="style" required class="mt-1 block w-full pl-2 pr-8 py-1 text-sm border-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 rounded-md">
-                  <option value="">Select Style</option>
-                  <option value="Minimalist">Minimalist</option>
-                  <option value="Vintage">Vintage</option>
-                  <option value="Modern">Modern</option>
-                  <option value="Futuristic">Futuristic</option>
-                  <option value="Hand-drawn">Hand-drawn</option>
-                </select>
-              </div>
-              <div>
-                <label for="colors" class="block text-xs font-medium text-gray-200">Colors</label>
-                <input type="text" name="colors" id="colors" placeholder="Colors (comma-separated)" required class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm text-sm border-gray-500 rounded-md">
-              </div>
-              <div>
-                <label for="keywords" class="block text-xs font-medium text-gray-200">Keywords</label>
-                <input type="text" name="keywords" id="keywords" placeholder="Keywords" required class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm text-sm border-gray-500 rounded-md">
-              </div>
-              <button type="submit" class="w-full flex justify-center py-1 px-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
-                Generate Logo
-              </button>
-            </form>
-          </div>
-
-          <div id="advanced-mode" class="bg-gray-700 p-4 rounded-lg shadow-md hidden h-full">
-            <h2 class="text-lg font-semibold mb-2 text-gray-200">Advanced Mode</h2>
-            <form id="advanced-form" class="space-y-2">
-              <div>
-                <label for="custom_prompt" class="block text-xs font-medium text-gray-200">Custom Prompt</label>
-                <textarea name="custom_prompt" id="custom_prompt" rows="6" placeholder="A sleek and modern logo for a [Your Industry], that reflects [Your Values]. Preferably using colors [Preferred Colors], and incorporating elements of [Key Elements]." required class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm text-sm border-gray-500 rounded-md"></textarea>
-              </div>
-              <button type="submit" class="w-full flex justify-center py-1 px-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
-                Generate Custom Logo
-              </button>
-            </form>
-          </div>
+<body class="flex flex-col min-h-screen">
+  <!-- Header -->
+  <header class="bg-gray-800 py-4">
+    <nav class="container mx-auto px-4">
+      <div class="flex justify-between items-center">
+        <a href="#" class="text-white text-xl font-bold">Text2Logo</a>
+        <div class="hidden md:flex space-x-4">
+          <a href="#" class="text-white">Home</a>
+          <a href="#about" class="text-white">About</a>
+          <a href="#" class="text-white">Demo</a>
         </div>
+        <button class="md:hidden text-white">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
 
-        <div id="result" class="w-1/2 pl-2 flex flex-col items-center justify-center bg-gray-700 p-4 rounded-lg shadow-md">
-          <div id="loading-spinner" class="hidden">
-            <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500 border-solid"></div>
-            <p id="loading-message" class="mt-2 text-xs text-gray-200">Initializing logo generation...</p>
-          </div>
-          <div id="placeholder" class="border-2 border-dashed border-gray-500 rounded-lg p-4 flex items-center justify-center w-full h-full">
-            <p class="text-gray-400 text-sm">Your image will be generated here</p>
-          </div>
-          <div class="relative">
-            <a id="logo-link" href="#" target="_blank" rel="noopener noreferrer">
-              <img id="logo-image" src="" alt="Generated Logo" class="max-w-full h-auto rounded-lg shadow-lg hidden mt-2">
-            </a>
-            <a id="download-link" href="#" download="generated_logo.png" target="_blank" rel="noopener noreferrer" class="absolute top-2 right-2 bg-blue-500 hover:bg-blue-600 text-white rounded p-1 hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-            </a>
+  <!-- Hero Section -->
+  <main class="flex-grow">
+    <div class="bg-gray-900 relative overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply" alt="" class="absolute inset-0 w-full h-full object-cover">
+      <div class="relative z-10 container mx-auto px-4 py-24 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">Text2Logo AI Generator</h1>
+        <p class="text-xl text-gray-300 mb-8">Transform your ideas into stunning logos with AI</p>
+        <div class="bg-gray-800 p-8 rounded-lg shadow-md max-w-lg mx-auto">
+          <h3 class="text-xl font-bold mb-4">Join the Waitlist</h3>
+          <p class="mb-4">Be the first to know when Text2Logo launches. Sign up for our waitlist now!</p>
+          <div class="flex justify-center">
+            <iframe src="https://paragraph.xyz/@craftthefuture/embed?minimal=true" width="100%" height="45" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
           </div>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- Logo Display Section -->
-  <section id="logoDisplay" class="h-screen flex items-center justify-center">
-    <div class="text-center p-8 bg-gray-800 bg-opacity-75 rounded-lg shadow-lg">
-      <h2 class="text-3xl font-bold mb-4">Your Generated Logo</h2>
-      <div id="logoOutput" class="text-5xl font-bold"></div>
+    
+    <!-- About Section -->
+    <section id="about" class="bg-gray-800 py-16">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-8">About Text2Logo</h2>
+        <p class="text-lg mb-8">Text2Logo is an AI-powered logo generator that creates stunning logos from simple text descriptions. Our advanced machine learning algorithms analyze your input and generate unique, high-quality logos tailored to your brand.</p>
+        <p class="text-lg mb-8">With Text2Logo, you can save time and money on logo design while still getting professional-grade results. Whether you're a startup, small business, or individual looking for a new logo, Text2Logo has you covered.</p>
+      </div>
+    </section>
+  </main>
+   <!-- Demo Section -->
+   <section id="demo" class="bg-gray-800 py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-8">Try Text2Logo</h2>
+      <div class="bg-gray-900 p-8 rounded-lg shadow-md">
+        <div class="mb-4">
+          <label for="logo-text" class="block text-lg font-bold mb-2">Enter Logo Text:</label>
+          <input type="text" id="logo-text" class="w-full px-4 py-2 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-4">
+          <label class="block text-lg font-bold mb-2">Select Logo Style:</label>
+          <div class="flex items-center mb-2">
+            <input type="radio" id="style-modern" name="logo-style" value="modern" class="mr-2">
+            <label for="style-modern">Modern</label>
+          </div>
+          <div class="flex items-center mb-2">
+            <input type="radio" id="style-classic" name="logo-style" value="classic" class="mr-2">
+            <label for="style-classic">Classic</label>
+          </div>
+          <div class="flex items-center">
+            <input type="radio" id="style-abstract" name="logo-style" value="abstract" class="mr-2">
+            <label for="style-abstract">Abstract</label>
+          </div>
+        </div>
+        <div class="mb-8">
+          <label class="block text-lg font-bold mb-2">Customize:</label>
+          <div class="flex items-center mb-4">
+            <label for="color-picker" class="mr-4">Color:</label>
+            <input type="color" id="color-picker" class="w-10 h-10 rounded-full overflow-hidden">
+          </div>
+          <div class="flex items-center">
+            <label for="complexity-slider" class="mr-4">Complexity:</label>
+            <input type="range" id="complexity-slider" min="1" max="5" step="1" class="w-full">
+          </div>
+        </div>
+        <button id="generate-btn" class="bg-blue-500 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-600 transition duration-200">Generate Logo</button>
+      </div>
+      <div id="logo-output" class="mt-8 flex justify-center">
+        <!-- Generated logo will appear here -->
+      </div>
     </div>
   </section>
-
-  <!-- Floating Arrow -->
-  <div class="floating-arrow" onclick="navigateSections()">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-    </svg>
-  </div>
-
   <script>
-    document.getElementById('standard-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const formData = new FormData(this);
-      generateLogo('/api/txttologo/generate_logo', Object.fromEntries(formData));
+    const generateBtn = document.getElementById('generate-btn');
+    const logoOutput = document.getElementById('logo-output');
+
+    generateBtn.addEventListener('click', () => {
+      // Simulate logo generation with a loading spinner
+      logoOutput.innerHTML = '<div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>';
+
+      setTimeout(() => {
+        // Replace with actual generated logo
+        logoOutput.innerHTML = '<img src="path/to/generated/logo.png" alt="Generated Logo" class="max-w-full h-auto rounded-lg shadow-md">';
+      }, 2000);
     });
-
-    document.getElementById('advanced-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const formData = new FormData(this);
-      generateLogo('/api/txttologo/generate_logo_custom', Object.fromEntries(formData));
-    });
-
-    function generateLogo(url, data) {
-      const loadingSpinner = document.getElementById('loading-spinner');
-      const loadingMessage = document.getElementById('loading-message');
-      const placeholder = document.getElementById('placeholder');
-      const logoImage = document.getElementById('logo-image');
-      const logoLink = document.getElementById('logo-link');
-      const downloadLink = document.getElementById('download-link');
-
-      loadingSpinner.classList.remove('hidden');
-      placeholder.classList.add('hidden');
-      logoImage.classList.add('hidden');
-      downloadLink.classList.add('hidden');
-
-      const messages = [
-        "Analyzing your input...",
-        "Brainstorming ideas...",
-        "Sketching initial concepts...",
-        "Refining the design...",
-        "Adding finishing touches...",
-        "Almost there..."
-      ];
-
-      let messageIndex = 0;
-      const messageInterval = setInterval(() => {
-        loadingMessage.textContent = messages[messageIndex];
-        messageIndex = (messageIndex + 1) % messages.length;
-      }, 3000);
-
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.logo_url) {
-          const img = new Image();
-          img.onload = function() {
-            clearInterval(messageInterval);
-            loadingSpinner.classList.add('hidden');
-            logoImage.src = data.logo_url;
-            logoImage.classList.remove('hidden');
-            logoImage.classList.add('shadow-lg', 'shadow-blue-500/50');
-            logoLink.href = data.logo_url;
-            downloadLink.href = data.logo_url;
-            downloadLink.classList.remove('hidden');
-          };
-          img.src = data.logo_url;
-        } else {
-          clearInterval(messageInterval);
-          loadingSpinner.classList.add('hidden');
-          placeholder.classList.remove('hidden');
-          placeholder.innerHTML = '<p class="text-red-500 text-sm">Failed to generate logo</p>';
-        }
-      })
-      .catch(error => {
-        clearInterval(messageInterval);
-        loadingSpinner.classList.add('hidden');
-        placeholder.classList.remove('hidden');
-        placeholder.innerHTML = '<p class="text-red-500 text-sm">An error occurred while generating the logo</p>';
-        console.error('Error:', error);
-      });
-    }
-
-    function toggleMode() {
-      const standardMode = document.getElementById('standard-mode');
-      const advancedMode = document.getElementById('advanced-mode');
-      const modeToggle = document.getElementById('mode-toggle');
-
-      if (modeToggle.checked) {
-        standardMode.classList.add('hidden');
-        advancedMode.classList.remove('hidden');
-      } else {
-        standardMode.classList.remove('hidden');
-        advancedMode.classList.add('hidden');
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      const modeToggle = document.getElementById('mode-toggle');
-      modeToggle.addEventListener('change', toggleMode);
-    });
-
-    function scrollToSection(sectionId) {
-      document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-    }
-
-    const sections = ['about', 'form', 'logoDisplay'];
-    let currentSectionIndex = 0;
-
-    function navigateSections() {
-      currentSectionIndex = (currentSectionIndex + 1) % sections.length;
-      scrollToSection(sections[currentSectionIndex]);
-    }
   </script>
+</main>
 
+  <!-- Footer -->
+  <footer class="bg-gray-800 py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-gray-400">Powered by Craft The Future</p>
+      <p class="text-gray-400">Nocode Creatives</p>
+    </div>
+  </footer>
 </body>
 </html>
