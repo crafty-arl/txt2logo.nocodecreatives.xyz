@@ -34,7 +34,23 @@ jobs:
       - name: Set environment variables
         env:
           OPEN_AI_API: ${{ secrets.OPEN_AI_API }}
-        run: echo "OPEN_AI_API is set."
+        run: echo "Environment variable OPEN_AI_API is set."
+
+      - name: Make API request and output results
+        env:
+          OPEN_AI_API: ${{ secrets.OPEN_AI_API }}
+        run: |
+          response=$(curl -s -X POST "https://api.openai.com/v1/images/generations" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $OPEN_AI_API" \
+            -d '{
+              "model": "dall-e-3",
+              "prompt": "a white siamese cat",
+              "n": 1,
+              "size": "1024x1024"
+            }')
+          echo "Response from API:"
+          echo $response | jq '.'
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
