@@ -6,7 +6,6 @@
   <title>Text2Logo AI Generator - Coming Soon</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
-  <script src="app.js"></script>
   <style>
     body {
       scroll-behavior: smooth;
@@ -150,10 +149,26 @@
       // Simulate logo generation with a loading spinner
       logoOutput.innerHTML = '<div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>';
 
-      setTimeout(() => {
-        // Replace with actual generated logo
-        logoOutput.innerHTML = '<img src="path/to/generated/logo.png" alt="Generated Logo" class="max-w-full h-auto rounded-lg shadow-md">';
-      }, 2000);
+      fetch('/generate_logo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          logoText: document.getElementById('logo-text').value,
+          logoStyle: document.querySelector('input[name="logo-style"]:checked').value,
+          color: document.getElementById('color-picker').value,
+          complexity: document.getElementById('complexity-slider').value
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          logoOutput.innerHTML = `<img src="${data.logoUrl}" alt="Generated Logo" class="w-64 h-64">`;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          logoOutput.innerHTML = '<p class="text-red-500">Error generating logo. Please try again.</p>';
+        });
     });
   </script>
 </main>
