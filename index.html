@@ -1,49 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Codespaces App</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Txt2Logo - Logo Creator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            neon: {
+              pink: '#ff00ff',
+              blue: '#00ffff',
+              yellow: '#ffff00',
+              green: '#39ff14',
+            },
+          },
+          fontFamily: {
+            'poppins': ['Poppins', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 </head>
-<body class="bg-gray-100">
+<body class="bg-black text-white font-poppins">
+  <header class="bg-gray-900 text-center py-4">
+    <h1 class="text-3xl font-bold">Txt2Logo</h1>
+    <p class="text-neon-pink">Logo Creator</p>
+  </header>
 
-    <!-- Header -->
-    <header class="bg-blue-600 text-white p-4">
-        <h1 class="text-3xl font-bold">GitHub Codespaces App</h1>
-    </header>
+  <div class="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <aside class="bg-gray-800 p-4 rounded-lg shadow-lg">
+      <h2 class="text-xl font-semibold mb-4">Advertisement</h2>
+      <div class="bg-gray-700 h-64 rounded-lg"></div>
+    </aside>
 
-    <!-- Hero Section -->
-    <section class="bg-white p-8">
-        <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-4">Welcome to GitHub Codespaces</h2>
-            <p class="text-lg mb-8">Run your code in the cloud with ease and efficiency.</p>
-            <img src="https://via.placeholder.com/800x400" alt="Hero Image" class="mx-auto">
+    <main class="md:col-span-2">
+      <div class="bg-gray-900 rounded-xl shadow-lg p-6 mb-8">
+        <h2 class="text-4xl md:text-6xl font-bold text-center mb-8 bg-gradient-to-r from-neon-pink via-neon-blue to-neon-yellow text-transparent bg-clip-text">
+          Txt2Logo
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="industry" class="block text-neon-blue font-semibold mb-2">🏢 Your Vibe</label>
+            <select id="industry" class="w-full bg-gray-800 text-white rounded-lg p-2 focus:ring-2 focus:ring-neon-pink">
+              <option>Tech</option>
+              <option>Fashion</option>
+              <option>Food</option>
+              <option>Health</option>
+              <option>Education</option>
+            </select>
+          </div>
+          <div>
+            <label for="style" class="block text-neon-green font-semibold mb-2">🎨 Your Style</label>
+            <select id="style" class="w-full bg-gray-800 text-white rounded-lg p-2 focus:ring-2 focus:ring-neon-yellow">
+              <option>Modern AF</option>
+              <option>Classic Cool</option>
+              <option>Minimalist</option>
+              <option>Playful</option>
+              <option>Wordmark</option>
+            </select>
+          </div>
         </div>
-    </section>
-
-    <!-- Cards Section -->
-    <section class="bg-gray-200 p-8">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="bg-white p-4 rounded shadow">
-                <h3 class="text-2xl font-bold mb-2">Feature 1</h3>
-                <p class="text-gray-700">Description of feature 1.</p>
+        
+        <div class="mt-6">
+          <label for="palette" class="block text-neon-yellow font-semibold mb-2">🎭 Color Palette</label>
+          <div class="grid grid-cols-3 gap-4">
+            <div class="bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg p-4 text-center cursor-pointer hover:ring-2 hover:ring-white">
+              Neon Dreams
             </div>
-            <div class="bg-white p-4 rounded shadow">
-                <h3 class="text-2xl font-bold mb-2">Feature 2</h3>
-                <p class="text-gray-700">Description of feature 2.</p>
+            <div class="bg-gradient-to-r from-blue-300 to-green-300 rounded-lg p-4 text-center cursor-pointer hover:ring-2 hover:ring-white">
+              Pastel Power
             </div>
-            <div class="bg-white p-4 rounded shadow">
-                <h3 class="text-2xl font-bold mb-2">Feature 3</h3>
-                <p class="text-gray-700">Description of feature 3.</p>
+            <div class="bg-gradient-to-r from-gray-900 to-gray-600 rounded-lg p-4 text-center cursor-pointer hover:ring-2 hover:ring-white">
+              Dark Mode
             </div>
+          </div>
         </div>
-    </section>
+        
+        <div class="mt-6">
+          <label for="keywords" class="block text-neon-pink font-semibold mb-2">🔥 Extra Inspo (Optional)</label>
+          <input type="text" id="keywords" placeholder="E.g., futuristic, retro, nature..." class="w-full bg-gray-800 text-white rounded-lg p-2 focus:ring-2 focus:ring-neon-blue">
+        </div>
+        
+        <button id="generate-btn" class="mt-8 w-full bg-gradient-to-r from-neon-pink to-neon-blue text-white font-bold py-3 px-6 rounded-lg transform transition duration-200 hover:scale-105">
+          🚀 Generate My Epic Logo
+        </button>
+      </div>
+      
+      <div id="logo-output" class="bg-gray-900 rounded-xl shadow-lg p-6 text-center mb-8">
+        <p class="text-xl">Your awesome logo will appear here! 🎉</p>
+      </div>
 
-    <!-- Footer -->
-    <footer class="bg-blue-600 text-white p-4 text-center">
-        <p>&copy; 2023 GitHub Codespaces App. All rights reserved.</p>
-    </footer>
+      <div class="bg-gray-900 rounded-xl shadow-lg p-6 text-center">
+        <stripe-buy-button
+          buy-button-id="buy_btn_1Ptc7DHnBOwIaU813UBZdMOm"
+          publishable-key="pk_live_51MDDmmHnBOwIaU81A7VjrkU0jKBfyBPSEgdMiCkf1akhUw7sTyDTiamm6uQItkCzADhQAjBOXr8hyK9XDFKrFjxS00mT00fBsL"
+        >
+        </stripe-buy-button>
+      </div>
+    </main>
 
+    <aside class="bg-gray-800 p-4 rounded-lg shadow-lg">
+      <h2 class="text-xl font-semibold mb-4">Advertisement</h2>
+      <div class="bg-gray-700 h-64 rounded-lg"></div>
+    </aside>
+  </div>
+
+  <footer class="bg-gray-900 text-center py-4 mt-8">
+    <p class="text-sm">&copy; 2023 Txt2Logo. All rights reserved.</p>
+    <p class="text-sm">Powered by Craft The Future</p>
+    <img src="https://craftthefuture.xyz/wp-content/uploads/2023/12/cropped-Untitled-design-4-2.png" alt="Craft The Future Logo" class="mx-auto mt-2 w-16 h-16">
+  </footer>
+
+  <script>
+    // Add your JavaScript for logo generation here
+    document.getElementById('generate-btn').addEventListener('click', function() {
+      const logoOutput = document.getElementById('logo-output');
+      logoOutput.innerHTML = '<div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-neon-pink mx-auto"></div>';
+      
+      // Simulate logo generation (replace with actual API call)
+      setTimeout(() => {
+        logoOutput.innerHTML = '<img src="https://via.placeholder.com/300" alt="Generated Logo" class="mx-auto rounded-lg shadow-lg">';
+      }, 2000);
+    });
+  </script>
 </body>
 </html>
