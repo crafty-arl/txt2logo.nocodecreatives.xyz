@@ -86,49 +86,49 @@
             <div class="grid grid-cols-4 gap-4">
               <div class="flex justify-center items-center">
                 <input type="checkbox" id="color1" value="red-500" class="hidden">
-                <label for="color1" class="cursor-pointer">
+                <label for="color1" class="cursor-pointer" title="Red">
                   <div class="w-12 h-12 bg-red-500 rounded-full"></div>
                 </label>
               </div>
               <div class="flex justify-center items-center">
                 <input type="checkbox" id="color2" value="blue-500" class="hidden">
-                <label for="color2" class="cursor-pointer">
+                <label for="color2" class="cursor-pointer" title="Blue">
                   <div class="w-12 h-12 bg-blue-500 rounded-full"></div>
                 </label>
               </div>
               <div class="flex justify-center items-center">
                 <input type="checkbox" id="color3" value="green-500" class="hidden">
-                <label for="color3" class="cursor-pointer">
+                <label for="color3" class="cursor-pointer" title="Green">
                   <div class="w-12 h-12 bg-green-500 rounded-full"></div>
                 </label>
               </div>
               <div class="flex justify-center items-center">
                 <input type="checkbox" id="color4" value="yellow-500" class="hidden">
-                <label for="color4" class="cursor-pointer">
+                <label for="color4" class="cursor-pointer" title="Yellow">
                   <div class="w-12 h-12 bg-yellow-500 rounded-full"></div>
                 </label>
               </div>
               <div class="flex justify-center items-center">
                 <input type="checkbox" id="color5" value="purple-500" class="hidden">
-                <label for="color5" class="cursor-pointer">
+                <label for="color5" class="cursor-pointer" title="Purple">
                   <div class="w-12 h-12 bg-purple-500 rounded-full"></div>
                 </label>
               </div>
               <div class="flex justify-center items-center">
                 <input type="checkbox" id="color6" value="orange-500" class="hidden">
-                <label for="color6" class="cursor-pointer">
+                <label for="color6" class="cursor-pointer" title="Orange">
                   <div class="w-12 h-12 bg-orange-500 rounded-full"></div>
                 </label>
               </div>
               <div class="flex justify-center items-center">
                 <input type="checkbox" id="color7" value="pink-500" class="hidden">
-                <label for="color7" class="cursor-pointer">
+                <label for="color7" class="cursor-pointer" title="Pink">
                   <div class="w-12 h-12 bg-pink-500 rounded-full"></div>
                 </label>
               </div>
               <div class="flex justify-center items-center">
                 <input type="checkbox" id="color8" value="gray-500" class="hidden">
-                <label for="color8" class="cursor-pointer">
+                <label for="color8" class="cursor-pointer" title="Gray">
                   <div class="w-12 h-12 bg-gray-500 rounded-full"></div>
                 </label>
               </div>
@@ -183,26 +183,15 @@
   </footer>
 
   <script>
-    // Add your JavaScript for logo generation here
     document.getElementById('generate-btn').addEventListener('click', function() {
       const logoOutput = document.getElementById('logo-output');
       logoOutput.innerHTML = '<div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-neon-pink mx-auto"></div>';
       
-      const apiKey = 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;  // Access the API key from the window object
-
       const industry = document.getElementById('industry').value;
       const style = document.getElementById('style').value;
       const keywords = document.getElementById('keywords').value;
 
-      const colors = [];
-      if (document.getElementById('color1').checked) colors.push('red-500');
-      if (document.getElementById('color2').checked) colors.push('blue-500');
-      if (document.getElementById('color3').checked) colors.push('green-500');
-      if (document.getElementById('color4').checked) colors.push('yellow-500');
-      if (document.getElementById('color5').checked) colors.push('purple-500');
-      if (document.getElementById('color6').checked) colors.push('orange-500');
-      if (document.getElementById('color7').checked) colors.push('pink-500');
-      if (document.getElementById('color8').checked) colors.push('gray-500');
+      const colors = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.value);
 
       if (colors.length !== 4) {
         logoOutput.innerHTML = '<p class="text-red-500">Please select exactly 4 colors.</p>';
@@ -218,24 +207,21 @@
         prompt = `A sleek, memorable logo for a ${industry} brand, featuring a ${style} design, with a focus on a clean and simple aesthetic. Color scheme: ${colors.join(', ')}. Incorporates elements of ${keywords}. Single image, scalable, with a transparent background.`;
       }
 
-      fetch('https://api.openai.com/v1/images/generations', {
+      console.log('Generated Prompt:', prompt); // Debugging log
+
+      fetch('/generate_logo', {
           method: 'POST',
           headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${apiKey}`
+              'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-              "model": "dall-e-3",
-              "prompt": prompt,
-              "n": 1,
-              "size": "1024x1024"
+              prompt: prompt
           })
       })
       .then(response => response.json())
       .then(data => {
-          console.log(data);
-          // Handle the generated image data here
-          const imageUrl = data.data[0].url;
+          console.log('Server Response:', data); // Debugging log
+          const imageUrl = data.image_url;
           logoOutput.innerHTML = `<img src="${imageUrl}" alt="Generated Logo" class="mx-auto rounded-lg shadow-lg">`;
       })
       .catch(error => {
