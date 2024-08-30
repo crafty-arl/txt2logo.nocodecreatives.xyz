@@ -190,5 +190,29 @@
       <p class="text-gray-400">Nocode Creatives</p>
     </div>
   </footer>
+
+  <!-- Add a new section to display the Hello World message -->
+  <section id="helloWorld" class="h-screen flex items-center justify-center">
+    <div class="text-center p-8 bg-gray-900 bg-opacity-75 rounded-lg shadow-lg">
+      <h2 class="text-3xl font-bold mb-4">Hello World</h2>
+      <div id="helloWorldMessage" class="text-5xl font-bold"></div>
+    </div>
+  </section>
+
+  <script>
+    // Fetch the Hello World message from the server
+    async function fetchHelloWorld() {
+      try {
+        const response = await fetch('/api/hello');
+        const message = await response.text();
+        document.getElementById('helloWorldMessage').textContent = message;
+      } catch (error) {
+        console.error('Error fetching Hello World message:', error);
+      }
+    }
+
+    // Call the fetchHelloWorld function when the page loads
+    document.addEventListener('DOMContentLoaded', fetchHelloWorld);
+  </script>
 </body>
 </html>
