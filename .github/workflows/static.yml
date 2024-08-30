@@ -32,7 +32,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Print host name
-        run: echo "Host $HOST_NAME | ${{secrets.OPEN_AI_API}}"
+        run: echo "Host $HOST_NAME | ${{secrets.OPEN_AI_KEY}}"
         env:
           HOST_NAME: Earthly
       - name: Print homepage URL
