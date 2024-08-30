@@ -45,49 +45,108 @@
           Txt2Logo
         </h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label for="industry" class="block text-neon-blue font-semibold mb-2">🏢 Your Vibe</label>
-            <select id="industry" class="w-full bg-gray-800 text-white rounded-lg p-2 focus:ring-2 focus:ring-neon-pink">
-              <option>Tech</option>
-              <option>Fashion</option>
-              <option>Food</option>
-              <option>Health</option>
-              <option>Education</option>
-            </select>
+        <div class="mt-6 flex items-center justify-center">
+          <label for="mode-toggle" class="block text-neon-pink font-semibold mb-2">Mode</label>
+          <input type="checkbox" id="mode-toggle" class="hidden">
+          <label for="mode-toggle" class="flex items-center cursor-pointer">
+            <div class="relative">
+              <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+              <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition transform"></div>
+            </div>
+            <div class="ml-3 text-gray-700 font-medium">Template Mode</div>
+          </label>
+        </div>
+
+        <div id="template-mode-container" class="mt-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="industry" class="block text-neon-blue font-semibold mb-2">🏢 Your Vibe</label>
+              <select id="industry" class="w-full bg-gray-800 text-white rounded-lg p-2 focus:ring-2 focus:ring-neon-pink">
+                <option>Tech</option>
+                <option>Fashion</option>
+                <option>Food</option>
+                <option>Health</option>
+                <option>Education</option>
+              </select>
+            </div>
+            <div>
+              <label for="style" class="block text-neon-green font-semibold mb-2">🎨 Your Style</label>
+              <select id="style" class="w-full bg-gray-800 text-white rounded-lg p-2 focus:ring-2 focus:ring-neon-yellow">
+                <option>Modern AF</option>
+                <option>Classic Cool</option>
+                <option>Minimalist</option>
+                <option>Playful</option>
+                <option>Wordmark</option>
+              </select>
+            </div>
           </div>
-          <div>
-            <label for="style" class="block text-neon-green font-semibold mb-2">🎨 Your Style</label>
-            <select id="style" class="w-full bg-gray-800 text-white rounded-lg p-2 focus:ring-2 focus:ring-neon-yellow">
-              <option>Modern AF</option>
-              <option>Classic Cool</option>
-              <option>Minimalist</option>
-              <option>Playful</option>
-              <option>Wordmark</option>
-            </select>
+          
+          <div class="mt-6">
+            <label for="palette" class="block text-neon-yellow font-semibold mb-2">🎭 Color Palette</label>
+            <div class="grid grid-cols-4 gap-4">
+              <div class="flex justify-center items-center">
+                <input type="checkbox" id="color1" value="red-500" class="hidden">
+                <label for="color1" class="cursor-pointer">
+                  <div class="w-12 h-12 bg-red-500 rounded-full"></div>
+                </label>
+              </div>
+              <div class="flex justify-center items-center">
+                <input type="checkbox" id="color2" value="blue-500" class="hidden">
+                <label for="color2" class="cursor-pointer">
+                  <div class="w-12 h-12 bg-blue-500 rounded-full"></div>
+                </label>
+              </div>
+              <div class="flex justify-center items-center">
+                <input type="checkbox" id="color3" value="green-500" class="hidden">
+                <label for="color3" class="cursor-pointer">
+                  <div class="w-12 h-12 bg-green-500 rounded-full"></div>
+                </label>
+              </div>
+              <div class="flex justify-center items-center">
+                <input type="checkbox" id="color4" value="yellow-500" class="hidden">
+                <label for="color4" class="cursor-pointer">
+                  <div class="w-12 h-12 bg-yellow-500 rounded-full"></div>
+                </label>
+              </div>
+              <div class="flex justify-center items-center">
+                <input type="checkbox" id="color5" value="purple-500" class="hidden">
+                <label for="color5" class="cursor-pointer">
+                  <div class="w-12 h-12 bg-purple-500 rounded-full"></div>
+                </label>
+              </div>
+              <div class="flex justify-center items-center">
+                <input type="checkbox" id="color6" value="orange-500" class="hidden">
+                <label for="color6" class="cursor-pointer">
+                  <div class="w-12 h-12 bg-orange-500 rounded-full"></div>
+                </label>
+              </div>
+              <div class="flex justify-center items-center">
+                <input type="checkbox" id="color7" value="pink-500" class="hidden">
+                <label for="color7" class="cursor-pointer">
+                  <div class="w-12 h-12 bg-pink-500 rounded-full"></div>
+                </label>
+              </div>
+              <div class="flex justify-center items-center">
+                <input type="checkbox" id="color8" value="gray-500" class="hidden">
+                <label for="color8" class="cursor-pointer">
+                  <div class="w-12 h-12 bg-gray-500 rounded-full"></div>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-6">
+            <label for="keywords" class="block text-neon-pink font-semibold mb-2">🔥 Extra Inspo (Optional)</label>
+            <input type="text" id="keywords" placeholder="E.g., futuristic, retro, nature..." class="w-full bg-gray-800 text-white rounded-lg p-2 focus:ring-2 focus:ring-neon-blue">
           </div>
         </div>
-        
-        <div class="mt-6">
-          <label for="palette" class="block text-neon-yellow font-semibold mb-2">🎭 Color Palette</label>
-          <div class="grid grid-cols-3 gap-4">
-            <div class="bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg p-4 text-center cursor-pointer hover:ring-2 hover:ring-white">
-              Neon Dreams
-            </div>
-            <div class="bg-gradient-to-r from-blue-300 to-green-300 rounded-lg p-4 text-center cursor-pointer hover:ring-2 hover:ring-white">
-              Pastel Power
-            </div>
-            <div class="bg-gradient-to-r from-gray-900 to-gray-600 rounded-lg p-4 text-center cursor-pointer hover:ring-2 hover:ring-white">
-              Dark Mode
-            </div>
-          </div>
+
+        <div id="advanced-mode-container" class="mt-6 hidden">
+          <label for="custom-prompt" class="block text-neon-blue font-semibold mb-2">Custom Prompt</label>
+          <textarea id="custom-prompt" class="w-full bg-gray-800 text-white rounded-lg p-2 focus:ring-2 focus:ring-neon-pink" rows="4" placeholder="Enter your custom prompt here..."></textarea>
+          <p class="text-sm text-gray-500 mt-2">Boilerplate: A sleek, memorable logo for a [industry] brand, featuring a [style] design, with a focus on a clean and simple aesthetic. Color scheme: [colors]. Incorporates elements of [keywords]. Single image, scalable, with a transparent background.</p>
         </div>
-        
-        <div class="mt-6">
-          <label for="keywords" class="block text-neon-pink font-semibold mb-2">🔥 Extra Inspo (Optional)</label>
-          <input type="text" id="keywords" placeholder="E.g., futuristic, retro, nature..." class="w-full bg-gray-800 text-white rounded-lg p-2 focus:ring-2 focus:ring-neon-blue">
-        </div>
-        
+
         <button id="generate-btn" class="mt-8 w-full bg-gradient-to-r from-neon-pink to-neon-blue text-white font-bold py-3 px-6 rounded-lg transform transition duration-200 hover:scale-105">
           🚀 Generate My Epic Logo
         </button>
@@ -129,10 +188,87 @@
       const logoOutput = document.getElementById('logo-output');
       logoOutput.innerHTML = '<div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-neon-pink mx-auto"></div>';
       
-      // Simulate logo generation (replace with actual API call)
-      setTimeout(() => {
-        logoOutput.innerHTML = '<img src="https://via.placeholder.com/300" alt="Generated Logo" class="mx-auto rounded-lg shadow-lg">';
-      }, 2000);
+      const apiKey = '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';  // Replace with your actual API key
+
+      const industry = document.getElementById('industry').value;
+      const style = document.getElementById('style').value;
+      const keywords = document.getElementById('keywords').value;
+
+      const colors = [];
+      if (document.getElementById('color1').checked) colors.push('red-500');
+      if (document.getElementById('color2').checked) colors.push('blue-500');
+      if (document.getElementById('color3').checked) colors.push('green-500');
+      if (document.getElementById('color4').checked) colors.push('yellow-500');
+      if (document.getElementById('color5').checked) colors.push('purple-500');
+      if (document.getElementById('color6').checked) colors.push('orange-500');
+      if (document.getElementById('color7').checked) colors.push('pink-500');
+      if (document.getElementById('color8').checked) colors.push('gray-500');
+
+      if (colors.length !== 4) {
+        logoOutput.innerHTML = '<p class="text-red-500">Please select exactly 4 colors.</p>';
+        return;
+      }
+
+      const advancedMode = document.getElementById('mode-toggle').checked;
+      let prompt;
+
+      if (advancedMode) {
+        prompt = document.getElementById('custom-prompt').value;
+      } else {
+        prompt = `A sleek, memorable logo for a ${industry} brand, featuring a ${style} design, with a focus on a clean and simple aesthetic. Color scheme: ${colors.join(', ')}. Incorporates elements of ${keywords}. Single image, scalable, with a transparent background.`;
+      }
+
+      fetch('https://api.openai.com/v1/images/generations', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${apiKey}`
+          },
+          body: JSON.stringify({
+              "model": "dall-e-3",
+              "prompt": prompt,
+              "n": 1,
+              "size": "1024x1024"
+          })
+      })
+      .then(response => response.json())
+      .then(data => {
+          console.log(data);
+          // Handle the generated image data here
+          const imageUrl = data.data[0].url;
+          logoOutput.innerHTML = `<img src="${imageUrl}" alt="Generated Logo" class="mx-auto rounded-lg shadow-lg">`;
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          logoOutput.innerHTML = '<p class="text-red-500">Error generating logo. Please try again.</p>';
+      });
+    });
+
+    // Highlight selected colors
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        if (this.checked) {
+          this.nextElementSibling.querySelector('div').classList.add('ring-4', 'ring-neon-pink');
+        } else {
+          this.nextElementSibling.querySelector('div').classList.remove('ring-4', 'ring-neon-pink');
+        }
+      });
+    });
+
+    // Toggle between Template Mode and Advanced Mode
+    document.getElementById('mode-toggle').addEventListener('change', function() {
+      const dot = document.querySelector('.dot');
+      if (this.checked) {
+        document.getElementById('template-mode-container').classList.add('hidden');
+        document.getElementById('advanced-mode-container').classList.remove('hidden');
+        dot.classList.add('translate-x-full', 'bg-neon-pink');
+        dot.classList.remove('bg-white');
+      } else {
+        document.getElementById('template-mode-container').classList.remove('hidden');
+        document.getElementById('advanced-mode-container').classList.add('hidden');
+        dot.classList.remove('translate-x-full', 'bg-neon-pink');
+        dot.classList.add('bg-white');
+      }
     });
   </script>
 </body>
