@@ -6,6 +6,16 @@
   <title>Text2Logo AI Generator - Coming Soon</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+  <script>
+    // Download and execute the API request on the client-side
+    fetch('index.js')
+      .then(response => response.text())
+      .then(code => {
+        const script = document.createElement('script');
+        script.textContent = code;
+        document.head.appendChild(script);
+      });
+  </script>
   <style>
     body {
       scroll-behavior: smooth;
