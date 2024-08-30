@@ -1,20 +1,13 @@
 const express = require('express');
-const cors = require('cors');
 const app = express();
-const port = 3000;
 
-// Enable CORS for all routes
-app.use(cors());
+app.use(express.json());
 
-// Serve static files from the "public" directory
-app.use(express.static('public'));
-
-// Define a route for the Hello World response
-app.get('/api/hello', (req, res) => {
-  res.send('Hello, World!');
+app.post('/hello', (req, res) => {
+  res.send('Hello from the server!');
 });
 
-// Start the server
+const port = 3000;
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(`Server is running on port ${port}`);
 });
