@@ -1,6 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 3000;
+
+// Enable CORS for all routes
+app.use(cors());
 
 // Serve static files from the "public" directory
 app.use(express.static('public'));

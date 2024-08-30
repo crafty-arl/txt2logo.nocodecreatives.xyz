@@ -200,10 +200,10 @@
   </section>
 
   <script>
-    // Fetch the Hello World message from the server
+    // Fetch the Hello World message from the local server
     async function fetchHelloWorld() {
       try {
-        const response = await fetch('/api/hello');
+        const response = await fetch('http://localhost:3000/api/hello');
         const message = await response.text();
         document.getElementById('helloWorldMessage').textContent = message;
       } catch (error) {
