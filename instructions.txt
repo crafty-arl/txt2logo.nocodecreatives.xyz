@@ -1,0 +1,9 @@
+Create a single page web app desing to run github codespacces using @tailwindcss this should
+have the following design layout vertical grid layout with Header, Hero, 3 cards, and a footer. 
+The app should be designed responsivley and should be a single page app.
+
+The main features will be of this app will be: Text 2 Logo 
+Rember this is a single page app.
+So the page should have full page slide down aesthic make sure in incoroprates images and text to desing this app in full
+
+
